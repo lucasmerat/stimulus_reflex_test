@@ -1,0 +1,13 @@
+<h1>Pages#home</h1>
+
+<input class="new-todo" placeholder="What needs to be done?"
+      data-reflex="change->TodosReflex#create">
+
+<% @todos.each do |todo| %>
+  <div>
+    <input <%= "checked" if todo.completed_at? %> class="toggle-all" type="checkbox" data-todo-id="<%= todo.id %>" data-reflex="change->TodosReflex#toggle">
+    <span>
+      <%= todo.name %>
+    </span>
+  </div>
+<% end %>
