@@ -1,7 +1,11 @@
 <h1>Pages#home</h1>
 
-<input class="new-todo" placeholder="What needs to be done?"
-      data-reflex="change->TodosReflex#create">
+<%= form_with(model: @todo, data: { reflex: "submit->TodosReflex#create" }) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.submit class: 'btn btn-primary' %>
+<% end %>
+
 
 <% @todos.each do |todo| %>
   <div>
@@ -9,5 +13,6 @@
     <span>
       <%= todo.name %>
     </span>
+    <button data-id="<%= todo.id %>" data-reflex="click->TodosReflex#delete">X</button>
   </div>
 <% end %>

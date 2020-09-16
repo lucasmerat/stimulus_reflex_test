@@ -1,10 +1,10 @@
 class TodosReflex < StimulusReflex::Reflex
   def create
-    Todo.create name: element[:value]
+    Todo.create name: params[:name]
   end
 
-  def increment
-    @count = element.dataset[:count].to_i + element.dataset[:step].to_i
+  def delete
+    Todo.destroy element.dataset[:id]
   end
 
   def toggle
