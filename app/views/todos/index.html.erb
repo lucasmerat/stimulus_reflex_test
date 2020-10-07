@@ -7,12 +7,4 @@
 <% end %>
 
 
-<% @todos.each do |todo| %>
-  <div>
-    <input <%= "checked" if todo.completed_at? %> class="toggle-all" type="checkbox" data-todo-id="<%= todo.id %>" data-reflex="change->TodosReflex#toggle">
-    <span>
-      <%= todo.name %>
-    </span>
-    <button data-id="<%= todo.id %>" data-reflex="click->TodosReflex#delete">X</button>
-  </div>
-<% end %>
+<%= render(TodoComponent.with_collection(Todo.all, todo_model: @todo)) %>

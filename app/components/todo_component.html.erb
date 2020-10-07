@@ -1,0 +1,16 @@
+<%= component_controller do %>
+  <div>
+    <input <%= "checked" if @todo.completed_at? %> class="toggle-all" type="checkbox" data-todo-id="<%= @todo.id %>" data-reflex="change->TodosReflex#toggle">
+    <button data-id="<%= @todo.id %>" data-reflex="click->TodosReflex#delete">X</button>
+  </div>
+
+
+  <% if @editing %>
+    <%= form_with(model: @todo_model) do |form| %>
+      <%= form.text_field :name, value: @todo.name %>
+      <%= reflex_tag :update, :button, "Save", "todo-id": @todo.id%>
+    <% end %>
+  <% else %>
+    <%= reflex_tag :toggle_editing, :span, @todo.name%>
+  <% end %>
+<% end %>
